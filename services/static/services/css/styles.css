@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+body{
+  background-color:#161a1ddc;  
+}
+#details h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+ }
+
+
+#index {
+  background-color: #161a1d;
+}
+
+
+.nav-item{
+  font-family: 'Courier New', Courier, monospace;
+}
+.title{
+  letter-spacing: 5px;
+  font-family: Teko,sans-serif!important;
+  text-transform: uppercase!important;
+}
+.title2{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.btton{
+  color: #000000!important;
+  font-weight: 900;
+  font-size: 25px;
+  letter-spacing: 4px;
+  font-family: Teko,sans-serif!important;
+}
+/* Nav */
+header{
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: 0.5s;
+}
+header.sticky{
+  background: black;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+  color: black;
+}
+.top-nav{
+  background-color: black;
+  color: white;
+}
+header nav{
+  height: 70px;
+}
+
+/* navv */
+
+/* INDEX Page */
+.navbar-brand img{
+  height: 30px;
+}
+.img-profile{
+  /* style=" */
+  height: 40px;
+  width: 40px;
+}
+#index svg{
+  position: absolute;
+}
+.learn{
+  border-radius: 50px ;
+}
+#banner{
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+#swip .card{
+  border-radius: 10%;
+}
+
+
+#midsec{
+  background-image:url("../img/1.jpg");
+  background-position:center center;
+  background-size: cover;
+}
+.sec1{
+  color: white;
+}
+
+@media (max-width: 992px){
+  #midsec{
+    background-image:none;
+    background-position:center center;
+    background-size: cover;
+  }
+  .sec1{
+    color: black;
+  }
+  .navigation{
+    display: none;
+  }
+
+}
+
+/* Tutorials */
+
+.tutotitle{
+  font-size: 50px;
+  font-weight: 700;
+  font-family: serif;
+  letter-spacing: 10px;
+}
+#queries .title h1{
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-width: 5px;
+  font-size: 40px;
+  font-family: 'Roboto', sans-serif;
+}
+.breadcrumb-item{
+  color: black;
+  font-size: 17px;
+  padding-top: 3px;
+  padding-left: 15px;
+  font-weight: 550;
+}
+
+#tutorial .card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.596), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+
+
+
+
+.form-elegant .font-small {
+  font-size: 0.8rem; }
+
+.form-elegant .z-depth-1a {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+  box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }
+
+.form-elegant .modal-header {
+  border-bottom: none; }
+
+.modal-dialog .form-elegant .btn .fab {
+  color: #2196f3!important; }
+
+.form-elegant .modal-body, .form-elegant .modal-footer {
+  font-weight: 400; }
+
+
+
+
+
+
+/*  */
+
+/* queries */
+
+.queryquestion .card{
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-radius: 0%;
+  border-bottom-color: black;
+
+}
+.queryquestion .card:hover{
+  background-color: lightgrey;
+  
+}
+#v-pills-tab{
+  border-top:none;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+
+}
+/*  */
+
+
+
+
+
+  /* #contact .container{
+    border-radius: 50px;
+  } */
+#contact .container{
+  border-radius: 50px;
+}
+#contactimg img{
+  border-left: 10px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+@media (max-width: 992px){
+  #contactimg{
+    display: none;
+  }
+  .aboutimg{
+    display: none;
+  }
+  .breadcrumb-item{
+    display: none;
+  }
+
+}
+
+
+
+
+#aboutmodal{
+border-radius:60px;
+}
+
+.aboutimg img{
+  border-left: 10px;
+  border-top-left-radius: 60px;
+  border-bottom-left-radius: 60px;
+}
+
+footer {
+  background-color: black;
+}
+
+
+.pe{
+  padding-left: 30px;
+  background-color: rgba(128, 128, 128, 0.479);
+  border-left-width:10px ;
+  border-left-color: green  ;
+  border-left-style: solid;
+}
+.video-fluid {
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+
+
+
+/* footer */
+
+.footer-img{
+  height: 30px;
+}

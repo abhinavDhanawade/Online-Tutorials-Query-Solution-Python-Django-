@@ -1,0 +1,150 @@
+{% extends 'services/base.html' %}
+{% load static %}
+{% block title %}<title>Home</title>{% endblock title %}
+{% block body %}
+<section id="index">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#D91C1F" fill-opacity="1"
+            d="M0,160L18.5,165.3C36.9,171,74,181,111,170.7C147.7,160,185,128,222,133.3C258.5,139,295,181,332,208C369.2,235,406,245,443,245.3C480,245,517,235,554,218.7C590.8,203,628,181,665,144C701.5,107,738,53,775,53.3C812.3,53,849,107,886,112C923.1,117,960,75,997,58.7C1033.8,43,1071,53,1108,74.7C1144.6,96,1182,128,1218,138.7C1255.4,149,1292,139,1329,149.3C1366.2,160,1403,192,1422,208L1440,224L1440,0L1421.5,0C1403.1,0,1366,0,1329,0C1292.3,0,1255,0,1218,0C1181.5,0,1145,0,1108,0C1070.8,0,1034,0,997,0C960,0,923,0,886,0C849.2,0,812,0,775,0C738.5,0,702,0,665,0C627.7,0,591,0,554,0C516.9,0,480,0,443,0C406.2,0,369,0,332,0C295.4,0,258,0,222,0C184.6,0,148,0,111,0C73.8,0,37,0,18,0L0,0Z">
+        </path>
+    </svg>
+    <div class="container col-10 rounded" style="position: relative; padding: 12% 0% 0% 0%;">
+        <div class="row p-4 p-lg-5 bg-light learn">
+            <div class="col-xl-6 order-sm-1 m-md-auto my-2">
+                <div id="section2">
+                    <video class="video-fluid z-depth-1 rounded" autoplay loop controls>
+                        <source src="{% static 'services/img/Hour of code.mp4' %}" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+            <div class="col-xl-6 order-sm-1 text-center my-2">
+                <h1 class="mb-2 ml-lg-4"><strong class="text-secondary">Let's start to learn<span class="text-dark">
+                            {{user.first_name}}</span>,</strong></h1>
+                <h2 class="mb-4 "><strong class="text-secondary"><span class="text-dark">Programming
+                        </span>&<span class="text-dark">
+                            Queries</span> solving.</strong> </h2>
+
+                <h4 class="mb-4 ">Our website is #1 for gaining knowledge<br> from online courses & query
+                    <br>solving
+                    challenges.<br></h4>
+                <h5 class="mb-4 ">It's the fastest, easiest, most addictive way to learn.</h5>
+
+                <div class="button ml-lg-5">
+                    <a href="{% url 'alltutorials' %}" class="btn btn-secondary m-2 rounded-0 btn-lg px-5">Start Courses</a>
+                    <a href="{% url 'queries' %}" class="btn btn-secondary rounded-0 m-2 btn-lg px-5 ">Queries &
+                        Solution</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="details">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 70" style="position: relative;">
+        <path fill="#161a1d" fill-opacity="5" class="shadow-lg"
+            d="M-68.62,-59.90 C-6.54,39.76 289.73,150.29 620.99,-63.84 L500.00,0.00 L0.00,0.00 Z">
+        </path>
+    </svg>
+
+    <div class="container col-10 rounded">
+        <div id="midsec" class="row rounded bg-light p-lg-4">
+            <div class="col-lg-6 p-5 sec1">
+                <h2 class="mb-4">Learn coding & other technologies from mentor of
+                    leading tech companies through our online services.</h2>
+                <div class="button text-center">
+                    <a href="{% url 'alltutorials' %}" class="btn btn-secondary m-2 rounded btn-lg">Start Courses →</a>
+                </div>
+            </div>
+            <div class="col-lg-6 p-5">
+                <h2 class="mb-4">Improve your coding skills by finding solution of problem with our library of 300+
+                    Query and solution.</h2>
+                <div class="button text-center">
+                    <a href="{% url 'queries' %}" class="btn btn-secondary rounded m-2 btn-lg">Queries & Solution →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container col-lg-10 pt-5 my-lg-5">
+        <h1 class="title text-center text-white py-4 border-top">Website Tour</h1>
+        <div class="row no-gutters">
+            <div class="col-lg-4 py-lg-5">
+                <div class="rounded-left shadow p-5" style="background-color: #adb5bd;">
+                    <h2>
+                        Seamless Coding Resourses
+                    </h2>
+                    <p>A full-screen editor hosted on our platform to help you easily solve our
+                        challenges and practice. Solve challenges in one of 10+ programming languages and validate your
+                        solutions easily on our platform.</p>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-2" data-slide-to="1"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <div class="view">
+                                <img class="d-block w-100 rounded" src="{% static 'services/img/pic_1.png' %}"
+                                    alt="First slide">
+                                <div class="mask rgba-black-light"></div>
+                            </div>
+                            <div class="carousel-caption">
+                                <h3 class="h3-responsive">Online Courses</h3>
+                                <p>Learn different skills from online courses.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="view">
+                                <img class="d-block w-100 rounded" src="{% static 'services/img/pic_2.png' %}"
+                                    alt="Second slide">
+                                <div class="mask rgba-black-strong"></div>
+                            </div>
+                            <div class="carousel-caption">
+                                <h3 class="h3-responsive">Queries & Solution</h3>
+                                <p>Post your query and solution from all users.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="swip">
+    <div class="container p-3">
+        <h1 class="title text-center text-white border-top pt-4">Programming Language & Frame work</h1>
+        <div class="swiper-container ">
+            <div class="swiper-wrapper">
+                {% for i in categories %}
+                <div class="swiper-slide shadow">
+                    <div class="card p-4 bg-light">
+                        <img class="card-img-top px-5" src="/media/{{i.icon}}" alt="Card image cap" height="100px">
+                        <div class="card-body text-center">
+                            <h2 class="card-title font-italic font-weight-bold">{{i.name}}</h2>
+                            <p class="card-text  text-center">{{i.desc|truncatewords:15}}</p>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}

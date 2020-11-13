@@ -1,0 +1,58 @@
+{% extends 'services/base.html' %}
+{% load static %}
+{% block title %}<title>My Tutorials</title>
+{% endblock title %}
+{% block body %}
+<section>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute;">
+        <path fill="#0362DD" fill-opacity="1"
+            d="M0,128L40,112C80,96,160,64,240,80C320,96,400,160,480,202.7C560,245,640,267,720,256C800,245,880,203,960,192C1040,181,1120,203,1200,197.3C1280,192,1360,160,1400,144L1440,128L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z">
+        </path>
+    </svg>
+
+    <div class="container px-3 py-3 pt-md-5 pb-md-4 mx-auto text-left" style="position: relative; z-index: 20;">
+        <h1 class="px-3 title text-center">My Tutorials</h1>
+    </div>
+    <div class="container ">
+        {% for i in delete %}
+        <div class="card bg-white p-4 bg-light my-2">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    <div class="card-img">
+                        <a href="#">
+                            <img class="img-fluid rounded mb-3 " src="/media/{{i.imagefile}}" alt="" style="height: 250px;
+            object-fit: cover;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-5 p-3">
+                    <h1 class="card-title title2">{{i.title|truncatechars:30}}</h1>
+                    <h5><span class="badge badge-danger product mb-2 ml-xl-0 ml-4">{{i.catego}}</span></h5>
+                    <div class="d-flex">
+                        <i class="fa fa-language fa-2x p-1" aria-hidden="true"></i>
+                        <h5 class="pt-1 title">&nbsp;English</h5>
+
+                    </div>
+                    <h6 class="text-capitalize title2">Created By : <span class="text-success">{{i.author}}</span></h6>
+                    <h6 class="title2">Uploaded : <span class="text-success">{{i.timestamp|date}}</span></h6>
+                    <div class="text-center">
+                        <a class="btn btn-primary btn-block rounded-pill mt-3"
+                            href="{% url 'tutorial' title=i.title %}">Go to course</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="card bg-white p-4 bg-light">
+            <div class="row justify-content-center">
+                <div class="text-center m-5 col-11">
+                    <i class="fa fa-play-circle fa-6x" aria-hidden="true"></i>
+                    <h1 class="title mt-5">Nothing Purchased !</h1>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock body %}

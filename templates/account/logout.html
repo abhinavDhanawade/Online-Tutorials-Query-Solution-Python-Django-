@@ -1,0 +1,38 @@
+{% extends "services/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} <title>Sign Out</title>{% endblock title %}
+
+{% block body %}
+<section id="contact">
+  <div class="m-4">
+    <div class="container bg-light">
+      <div class="row ">
+        <div class="col-lg-6 p-0">
+          <div id="contactimg">
+            <img class="img-fluid" src="{% static 'services/img/photo-1587671928305-b7b08aa27f2f.jpg'%}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 py-5 mt-4">
+          <h1 class="text-center title2">Logout Confirmation!</h1>
+          <div class="px-5">
+            <div class="card-body">
+              <h4 class="title2 text-center">Are you sure you want to log-out ?</h4>
+
+              <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn btn-primary btn-block" type="submit">Logout</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock body %}

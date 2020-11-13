@@ -1,0 +1,73 @@
+{% extends 'services/base.html' %}
+{% load static %}
+{% block title %}<title>Tutorials</title>{% endblock title %}
+{% block body %}
+<section id="tutorial" class="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute;">
+        <path fill="#D91C1F" fill-opacity="1"
+            d="M0,160L48,149.3C96,139,192,117,288,117.3C384,117,480,139,576,138.7C672,139,768,117,864,101.3C960,85,1056,75,1152,80C1248,85,1344,107,1392,117.3L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+        </path>
+    </svg>
+
+
+    <div class="container px-3 py-3 pt-md-5 pb-md-4 mx-auto text-left" style="position: relative; z-index: 20;">
+        <h2 class="tutotitle px-3 text-center">Tutorials</h2>
+        <ul class="nav nav-pills mt-5 justify-content-center navigation" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="btn btn-secondary rounded-pill mx-3" id="pills-home-tab" href="{% url 'alltutorials' %}"
+                    aria-controls="pills-home">Home</a>
+            </li>
+            {% for i in categories %}
+            <li class="nav-item mx-3 ">
+                <a class="nav-link text-white rounded-pill btn btn-block title2 bg-secondary " href="{% url 'tfilter' i.name %}">{{i.name}}</a>
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+
+    <div class="container col-10">
+        <div class="row justify-content-center align-content-center">
+            {% for i in tutorial %}
+            <div class="col-lg-3 col-md-4 col-sm-5">
+                <div class="card mb-5 border-0 rounded shadow" style="background-color: #ffffff;">
+                    <div class="overlay">
+                        <img class="card-img-top img-fluid" src="/media/{{i.imagefile}}" alt="" style="height:150px;">
+
+                    </div>
+                    <div class="card-body text-center">
+                        <h5>{{i.catego}}</h5>
+                        <h4 class="card-title"><strong><a class="stretched-link" style="text-decoration:none;"
+                                    href="{% url 'tutorial_details' title=i.title %}">{{i.title | truncatechars:19}}</a></strong>
+                        </h4>
+                        <p class="card-text">{{i.desc| truncatechars:50}}</p>
+                        <div class="card-footer">
+                            <h5 class="float-left mb-0"><i class="fa fa-rupee-sign mr-1 pt-1"
+                                    aria-hidden="true"></i>{{i.price}}</h5>
+                            <span class="float-right">
+                                <a data-toggle="tooltip" data-placement="top" title="Share"><i
+                                        class="fas fa-share-alt mr-3"></i></a>
+                                <a class="active" data-toggle="tooltip" data-placement="top"
+                                    title="Added to Wishlist"><i class="fas fa-heart"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-9 p-5">
+                <div class="card bg-white p-4 bg-light">
+                    <div class="row justify-content-center">
+                        <div class="text-center col-11">
+                            <i class="fa fa-play-circle fa-4x" aria-hidden="true"></i>
+                            <h1 class="title mt-2">No such Tutorial !</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock body %}

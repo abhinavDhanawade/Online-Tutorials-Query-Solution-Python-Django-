@@ -1,0 +1,112 @@
+{% extends 'services/base.html' %}
+{% load static %}
+{% block title %}<title>Tutorial: Details</title>{% endblock title %}
+{% block body %}
+<section id="productDetails" class="">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute;">
+    <path fill="#0362DD" fill-opacity="1"
+      d="M0,160L18.5,165.3C36.9,171,74,181,111,170.7C147.7,160,185,128,222,133.3C258.5,139,295,181,332,208C369.2,235,406,245,443,245.3C480,245,517,235,554,218.7C590.8,203,628,181,665,144C701.5,107,738,53,775,53.3C812.3,53,849,107,886,112C923.1,117,960,75,997,58.7C1033.8,43,1071,53,1108,74.7C1144.6,96,1182,128,1218,138.7C1255.4,149,1292,139,1329,149.3C1366.2,160,1403,192,1422,208L1440,224L1440,0L1421.5,0C1403.1,0,1366,0,1329,0C1292.3,0,1255,0,1218,0C1181.5,0,1145,0,1108,0C1070.8,0,1034,0,997,0C960,0,923,0,886,0C849.2,0,812,0,775,0C738.5,0,702,0,665,0C627.7,0,591,0,554,0C516.9,0,480,0,443,0C406.2,0,369,0,332,0C295.4,0,258,0,222,0C184.6,0,148,0,111,0C73.8,0,37,0,18,0L0,0Z">
+    </path>
+  </svg>
+  <div class="container py-5">
+    {% for i in details %}
+    <div class="card shadow border-0 p-4 bg-light">
+      <div class="row justify-content-center border-0">
+        <div class="col-md-6">
+          <img class="img-fluid rounded mb-0" src="/media/{{i.imagefile}}" alt="" style="height: 400px;
+            object-fit: cover;">
+        </div>
+        <div class="col-md-6 p-4">
+          <h1 class="title2 font-weight-bolder">{{i.title}}</h1>
+          <h5><span class="badge badge-danger product mb-2 ml-xl-0 ml-4">{{i.catego}}</span></h5>
+          <h2 class="title">Price: ₹<span class="text-black-50"> {{i.price}}</span></h2>
+          <p class="title2">{{i.desc|truncatewords:35}}</p>
+          <div class="title">
+            <h5>Created By : <span class="text-success">{{i.author}}</span></h5>
+            <h5>Uploaded : <span class="text-success">{{i.timestamp|date}}</span></h5>
+          </div>
+          {% if user.is_authenticated %}
+              {% if i.title in res %}
+                <h6 class="badge-warning text-center rounded mt-2">Already Purchased !!</h6>
+                <a class="btn btn-secondary btn-lg rounded-pill btn-block mt-3 btton" href={% url 'mycourse'%}>Go to Course</a>      
+              {% else %}
+                <a class="btn btn-secondary btn-lg rounded-pill btn-block mt-3 btton" data-toggle="modal"
+                data-target="#checkout">Enroll</a>
+              {% endif %}
+          {% else %}
+          <a class="btn btn-secondary btn-lg rounded-pill btn-block mt-3 btton"
+            href="{% url 'account_login' %}">Enroll</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md" role="document" style="padding-top: 100px;">
+        <div class="modal-content bg-transparent border-0 form-elegant">
+          <div id="" class="modal-body p-0 bg-light rounded">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+            </button>
+            <h1 class="title text-center m-5">Checkout</h1>
+            <div class=" px-5">
+              <form action="" method="POST">
+                {% csrf_token %}
+                <div class="mb-0">
+                  {{form.as_p}}
+                </div>
+                <div class="p-3 text-center">
+                  <button class="btn btn-success btn-lg rounded-0" type="submit" value="Submit">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container border-top border-white">
+  </div>
+
+  <div class="d-flex justify-content-center wow fadeIn">
+    <div class="col-md-6 text-center text-white">
+      <h1 class="my-4 title">Most Popular Tutorials</h1>
+      <p class="title2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo
+        soluta odit
+        voluptates,
+        quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+    </div>
+  </div>
+
+  <div class="container col-10 pt-5">
+    <div class="row justify-content-center align-content-center">
+      {% for i in popular %}
+      <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="card mb-5 border-0 rounded-0 shadow bg-light" style="background-color: #ffffff;">
+          <div class="overlay">
+            <a><img class="card-img-top img-fluid" src="/media/{{i.imagefile}}" alt="" style="height:150px;">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            <h5>{{i.catego}}</h5>
+            <h4 class="card-title"><strong><a class="stretched-link" style="text-decoration:none;"
+                  href="{% url 'tutorial_details' title=i.title %}">{{i.title | truncatechars:19}}</a></strong>
+            </h4>
+            <p class="card-text">{{i.desc| truncatechars:50}}</p>
+            <div class="card-footer">
+              <h5 class="float-left mb-0"><i class="fa fa-rupee-sign mr-1 pt-1" aria-hidden="true"></i>{{i.price}}</h5>
+              <span class="float-right">
+                <a data-toggle="tooltip" data-placement="top" title="Share"><i class="fas fa-share-alt mr-3"></i></a>
+                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist"><i
+                    class="fas fa-heart"></i></a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock body %}

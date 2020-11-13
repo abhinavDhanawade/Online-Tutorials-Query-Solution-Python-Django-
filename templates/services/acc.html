@@ -1,0 +1,26 @@
+{% extends 'services/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} <title>Contact Us</title>{% endblock title %}
+{% block body %}
+<section>
+    <div class="m-4">
+        <div class="container">
+            <div class="row bg-light" style="border-radius:50px;">
+                <div class="col-lg-6 p-0">
+                    <div id="contactimg">
+                        <img class="img-fluid" src="{% static 'services/img/photo-1551739440-5dd934d3a94a.jfif'%}"
+                            alt="" style="height:100%; width:100%">
+                    </div>
+                </div>
+                <div class="col-lg-6 py-5" >
+{% block content %}
+
+{% endblock content %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}

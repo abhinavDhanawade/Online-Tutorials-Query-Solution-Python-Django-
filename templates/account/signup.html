@@ -1,0 +1,43 @@
+{% extends "services/acc.html" %}
+{% load crispy_forms_tags %}
+{% load account socialaccount %}
+{% block title %} <title>Sign-up</title>{% endblock title %}
+
+{% block content %}
+<h1 class="text-center">Sign Up</h1>
+<div class="px-sm-2 px-lg-5 justify-content-center align-items-center p-">
+  <div class="card-body">
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+
+      {{ form|crispy }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-block rounded-pill mt-4">Sign Up</button>
+      </div>
+    </form>
+    {% get_providers as socialaccount_providers %}
+
+    {% if socialaccount_providers %}
+    <p>Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}">sign
+        up</a> for a {{ site_name }} account and sign in below:</p>
+    <div class="socialaccount_ballot">
+      <ul class="socialaccount_providers btn btn-danger btn-block rounded-pill text-dark"
+        style="list-style-type: none;">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+      </ul>
+    </div>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% else %}
+    <p>If you have not created an account yet, then please
+      <a href="{{ signup_url }}">sign up</a> first.</p>
+    {% endif %}
+
+    <p class="text-center">Already have an account? Then please <a href="{{ login_url }}">sign in</a>.</p>
+  </div>
+</div>
+{% endblock %}

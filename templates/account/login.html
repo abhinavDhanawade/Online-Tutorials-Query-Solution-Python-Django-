@@ -1,0 +1,45 @@
+{% extends "services/acc.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% load account socialaccount %}
+{% block title %} <title> Sign In</title>{% endblock title %}
+{% block content %}
+
+<h1 class="text-center">Log In!</h1>
+<div class="px-sm-2 px-lg-5 justify-content-center align-content-center">
+  <div class="card-body">
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <div class="text-center">
+        <button class="btn btn-primary btn-block rounded-pill mb-4 p-2" type="submit">Sign In</button>
+        <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+      </div>
+    </form>
+    {% get_providers as socialaccount_providers %}
+
+    {% if socialaccount_providers %}
+    <div class="socialaccount_ballot">
+      <ul class="socialaccount_providers btn btn-danger btn-block rounded-pill text-dark" style="list-style-type: none;">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+      </ul>
+    </div>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% comment %} {% else %} {% endcomment %}
+    <p>If you have not created an account yet, then please
+      <a href="{{ signup_url }}">sign up</a> first.</p>
+    {% endif %}
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}

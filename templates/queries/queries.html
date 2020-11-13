@@ -1,0 +1,123 @@
+{% extends 'services/base.html' %}
+{% load static %}
+{% block title %} <title>Queries</title>{% endblock title %}
+{% block body %}
+<section id="queries">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute;">
+        <path fill="#0362DD" fill-opacity="1"
+            d="M0,160L48,149.3C96,139,192,117,288,117.3C384,117,480,139,576,138.7C672,139,768,117,864,101.3C960,85,1056,75,1152,80C1248,85,1344,107,1392,117.3L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+        </path>
+    </svg>
+
+
+    <div class="container px-3 py-3 pt-md-5 pb-md-4 mx-auto text-left" style="position: relative; z-index: 20;">
+        <h2 class="tutotitle px-3 text-center">Solutions</h2>
+    </div>
+    <div class="container col-10 py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-5">
+                <div class="p-4 bg-light rounded shadow mx-3">
+                    <div>
+                        <h2 class="border-bottom border-dark px-4 pb-2 title text-center">Search</h2>
+                        <form method="get" action="search"
+                            class="form-inline d-flex justify-content-center md-form form-sm active-cyan active-cyan-2 mt-2">
+                            <input class="form-control form-control-sm  w-100 rounded-pill" type="search"
+                                placeholder="Search" name="query" id="query">
+                        </form>
+                    </div>
+
+                    <div>
+                        <h2 class="border-bottom border-dark px-4 pb-2 title text-center">Categories</h2>
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                            aria-orientation="vertical">
+                            <a class="nav-link rounded-pill btn active" href="{% url 'queries' %}">All</a>
+
+                            {% for i in categories %}
+                            <a class="nav-link rounded-pill btn btn-block title2"
+                                href="{% url 'filter' i.name %}">{{i.name}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class=" border-bottom border-dark px-4 pb-2 title text-center">User</h2>
+                        {% if user.is_authenticated %}
+                        <div class="title2">
+
+                            <button class="btn btn-block btn-success rounded-pill mb-4" data-toggle="modal"
+                                data-target="#askquestion">Ask Question</button>
+                        </div>
+
+                        <div class="modal fade" id="askquestion" tabindex="-1" role="dialog"
+                            aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-md" role="document">
+                                <!--Content-->
+                                <div class="modal-content form-elegant">
+                                    <!--Header-->
+                                    <div class="modal-header text-center text-white">
+                                        <h3 class="modal-title w-100 font-weight-bold my-1 text-dark" id="myModalLabel">
+
+                                            <strong>Ask Question?</strong></h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!--Body-->
+                                    <div class="modal-body mx-4">
+                                        <!--Body-->
+                                        <div class="form-group">
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <div class="mb-0">
+                                                    {{form.as_p}}
+                                                </div>
+                                                <div class="p-3 text-center">
+                                                    <button class="btn btn-success btn-block btn-lg rounded-pill"
+                                                        type="submit" value="Submit">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7  bg-light rounded shadow py-3">
+                <div class="queryquestion ">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                            {% for i in question %}
+                            <div class="card " style="height: auto;">
+                                <div class="card-body pb-2">
+                                    <h4 class="card-title">{{i.title}}</h4>
+                                    <p class="card-text">{{i.content}}<br>{{i.example}}
+                                    </p>
+                                    <div class="row justify-content-between mx-2">
+                                        <h5><span class="badge badge-secondary ">{{i.catego}}</span></h5>
+                                        <a class="stretched-link" href="{{i.title}}">view more</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="card bg-white p-4 bg-light">
+                                <div class="row justify-content-center">
+                                    <div class="text-center col-11">
+                                        <i class="fa fa-question-circle fa-4x" aria-hidden="true"></i>
+                                        <h1 class="title mt-2">No such Query !</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}

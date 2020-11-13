@@ -1,0 +1,23 @@
+{% extends "services/acc.html" %}
+{% load crispy_forms_tags %}
+{% block title %}<title>Verify Your E-mail Address</title>{% endblock title %}
+
+{% block content %}
+<div class="text-center title2">
+<h2>Verify Your E-mail Address</h2>
+</div>
+<div class="card-body">
+{% url 'account_email' as email_url %}
+
+<p>This part of the site requires us to verify that
+you are who you claim to be. For this purpose, we require that you
+verify ownership of your e-mail address.</p>
+
+<p>We have sent an e-mail to you for
+verification. Please click on the link inside this e-mail. Please
+contact us if you do not receive it within a few minutes.</p>
+
+<p><strong>Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.</p>
+
+</div>
+{% endblock %}
